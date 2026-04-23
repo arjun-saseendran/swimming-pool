@@ -10,9 +10,9 @@ const (
 )
 
 type User struct {
-	ID        int       `json:"_id,omitempty"`
+	ID        uint      `gorm:"primaryKey" json:"id"`
 	Name      string    `json:"name"`
-	Mobile    string    `json:"mobile"`
-	Role      UserType  `json:"user_type"`
-	CreatedAt time.Time `json:"created_at"`
+	Mobile    string    `gorm:"uniqueIndex" json:"mobile"`
+	Role      UserType  `gorm:"default:'CUSTOMER'" json:"user_type"`
+	CreatedAt time.Time `gorm:"autoCreateTime" json:"created_at"`
 }
