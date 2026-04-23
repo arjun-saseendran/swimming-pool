@@ -1,23 +1,26 @@
 package main
 
 import (
-	"net/http"
+	"log"
 	db "pool/internal/db"
+	"pool/internal/user"
 
 	"github.com/gin-gonic/gin"
 )
 
+
+
 func main() {
-
+	dbConnection, err := db.ConnectDB()
+	if err != nil {
+		log.Fatalf("failed to connect data base: %v", err)
+	}
 	router := gin.Default()
-	db.ConnectDB()
 
-	router.GET("/ping", func(c *gin.Context) {
-		// Return JSON response
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
+	userService := user.NewUserService(dbConnection)
+
+	userHandler := user.NewUserHandlerFrom(userService)
+	userHandler.RegisterEndpoints(router)
 
 	router.Run()
 }
