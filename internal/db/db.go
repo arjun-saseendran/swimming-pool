@@ -2,7 +2,7 @@ package db
 
 import (
 	"log"
-	"pool/internal/user"
+	"os/user"
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
