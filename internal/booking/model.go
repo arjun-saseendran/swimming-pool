@@ -12,9 +12,10 @@ const (
 )
 
 type Booking struct {
-	ID        int          `json:"_id"`
+	ID        uint         `gorm:"primaryKey" json:"id"`
 	Title     string       `json:"title"`
-	UserID    int          `json:"user_id"`
-	Status    BookedStatus `json:"status"`
-	CreatedAt time.Time    `json:"created_at"`
+	UserID    uint         `json:"user_id"`
+	Status    BookedStatus `gorm:"default:'PENDING'" json:"status"`
+	CreatedAt time.Time    `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt time.Time    `gorm:"autoUpdateTime" json:"updated_at"`
 }

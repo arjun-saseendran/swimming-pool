@@ -15,4 +15,5 @@ type User struct {
 	Mobile    string    `gorm:"uniqueIndex" json:"mobile"`
 	Role      UserType  `gorm:"default:'CUSTOMER'" json:"user_type"`
 	CreatedAt time.Time `gorm:"autoCreateTime" json:"created_at"`
+	UpdatedAt time.Time `gorm:"autoUpdateTime" json:"updated_at"`
 }
