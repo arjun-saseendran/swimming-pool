@@ -2,6 +2,7 @@ package db
 
 import (
 	"log"
+	"pool/internal/booking"
 	"pool/internal/user"
 
 	"gorm.io/driver/postgres"
@@ -10,7 +11,7 @@ import (
 
 func ConnectDB() (*gorm.DB, error) {
 
-	dsn := "host=localhost user=postgres password=postgres dbname=test-db port=5432 sslmode=disable TimeZone=Asia/Shanghai"
+	dsn := "host=localhost user=postgres password=postgres dbname=swimming-pool port=5432 sslmode=disable TimeZone=Asia/Shanghai"
 
 	db, err := gorm.Open(postgres.New(postgres.Config{
 		DSN:                  dsn,
@@ -24,7 +25,7 @@ func ConnectDB() (*gorm.DB, error) {
 
 	log.Println("Successfully connected to Postgres!")
 
-	err = db.AutoMigrate(&user.User{})
+	err = db.AutoMigrate(&user.User{}, &booking.Booking{})
 	if err != nil {
 		return nil, err
 	}

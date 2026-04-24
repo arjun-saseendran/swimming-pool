@@ -7,7 +7,7 @@ type InputBooking struct {
 
 type UpdateInputBooking struct {
 	Title  string       `json:"title"`
-	Status BookedStatus `json:"status" binding:"omitempty,oneof=PENDING BOOKED CANCELED COMPLETED"`
+	Status BookedStatus `json:"status" binding:"omitempty,oneof=BOOKED CANCELED COMPLETED"`
 }
 
 func NewInputBooking() *InputBooking {
