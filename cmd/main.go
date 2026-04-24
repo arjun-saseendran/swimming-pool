@@ -17,11 +17,11 @@ func main() {
 	router := gin.Default()
 
 	userService := user.NewUserService(dbConnection)
-	userHandler := user.NewUserHandlerFrom(userService)
+	userHandler := user.NewUserHandler(userService)
 	userHandler.RegisterEndpoints(router)
 
 	bookingService := booking.NewBookingService(dbConnection)
-	bookingHandler := booking.NewUserHandlerFrom(bookingService)
+	bookingHandler := booking.NewUserHandler(bookingService)
 	bookingHandler.RegisterEndPoints(router)
 
 	router.Run()

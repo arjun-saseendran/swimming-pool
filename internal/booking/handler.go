@@ -11,7 +11,7 @@ type BookingHandler struct {
 	bookingService BookingService
 }
 
-func NewUserHandlerFrom(bookingService BookingService) *BookingHandler {
+func NewUserHandler(bookingService BookingService) *BookingHandler {
 	return &BookingHandler{"api/booking", bookingService}
 }
 
